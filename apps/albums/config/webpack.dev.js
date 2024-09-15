@@ -7,7 +7,7 @@ module.exports = {
     filename: '[name].[contenthash].js',
   },
   devServer: {
-    port: 8080,
+    port: 8082,
     hot: true,
     historyApiFallback: true,
   },
@@ -16,10 +16,10 @@ module.exports = {
       template: 'public/index.html',
     }),
     new ModuleFederationPlugin({
-      name: 'container',
-      remotes: {
-        postsApp: 'posts@http://localhost:8081/remoteEntry.js',
-        albumsApp: 'albums@http://localhost:8082/remoteEntry.js',
+      name: 'albums',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './AlbumsIndex': './src/index',
       },
     }),
   ],

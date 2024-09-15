@@ -1,8 +1,8 @@
 const component = () => {
   const element = document.createElement('div')
-  element.innerHTML = 'Hello, Posts app'
+  element.innerHTML = 'Hello, Albums app'
   return element
 }
 
-const root = document.getElementById('postsRoot')
+const root = document.getElementById('albumsRoot')
 root.appendChild(component())

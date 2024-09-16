@@ -20,7 +20,7 @@ module.exports = {
       name: 'albums',
       filename: 'remoteEntry.js',
       exposes: {
-        './AlbumsIndex': './src/index',
+        './AlbumsIndex': './src/bootstrap',
       },
       shared: packageJson.dependencies,
     }),

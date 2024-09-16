@@ -1,6 +1,8 @@
+import { join } from 'lodash'
+
 const component = () => {
   const element = document.createElement('div')
-  element.innerHTML = 'Hello, Albums app'
+  element.innerHTML = join(['Hello', 'Albums app'], ' 🐤 ')
   return element
 }
 

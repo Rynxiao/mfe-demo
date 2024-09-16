@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { ModuleFederationPlugin } = require('webpack').container
+const packageJson = require('../package.json')
 
 module.exports = {
   mode: 'development',
@@ -21,6 +22,7 @@ module.exports = {
       exposes: {
         './AlbumsIndex': './src/index',
       },
+      shared: packageJson.dependencies,
     }),
   ],
 }

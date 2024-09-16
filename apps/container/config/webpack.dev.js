@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { ModuleFederationPlugin } = require('webpack').container
+const packageJson = require('../package.json')
 
 module.exports = {
   mode: 'development',
@@ -21,6 +22,7 @@ module.exports = {
         postsApp: 'posts@http://localhost:8081/remoteEntry.js',
         albumsApp: 'albums@http://localhost:8082/remoteEntry.js',
       },
+      shared: packageJson.dependencies,
     }),
   ],
 }

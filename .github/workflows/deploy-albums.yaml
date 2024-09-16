@@ -8,7 +8,7 @@ on:
     branches:
       - main
     paths:
-      - 'apps/albums/**'
+      - 'apps/albums/src/**'
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest

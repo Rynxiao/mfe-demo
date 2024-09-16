@@ -8,7 +8,7 @@ on:
     branches:
       - main
     paths:
-      - 'apps/container/**'
+      - 'apps/container/src/**'
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest

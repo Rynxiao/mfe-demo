@@ -8,7 +8,7 @@ on:
     branches:
       - main
     paths:
-      - 'apps/posts/**'
+      - 'apps/posts/src/**'
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest

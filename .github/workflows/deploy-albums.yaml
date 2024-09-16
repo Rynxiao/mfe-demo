@@ -1,7 +1,7 @@
 name: Deploy Albums App
 env:
   VERCEL_ORG_ID: ${{ secrets.MFE_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.MFE_POSTS_PROJ_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.MFE_ALBUMS_PROJ_ID }}
 on:
   workflow_dispatch:
   push:

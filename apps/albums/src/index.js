@@ -4,5 +4,13 @@ const component = () => {
   return element
 }
 
-const root = document.getElementById('albumsRoot')
-root.appendChild(component())
+export const mount = (el) => {
+  el.appendChild(component())
+}
+
+if (process.env.NODE_ENV === 'development') {
+  const root = document.getElementById('albumsRoot')
+  if (root) {
+    mount(root)
+  }
+}

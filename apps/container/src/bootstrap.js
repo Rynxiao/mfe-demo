@@ -1,5 +1,5 @@
-import 'postsApp/PostsIndex'
-import 'albumsApp/AlbumsIndex'
+import './components/PostsApp'
+import './components/AlbumsApp'
 
 const component = () => {
   const element = document.createElement('div')

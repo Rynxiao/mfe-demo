@@ -9,4 +9,9 @@ export default [
   pluginJs.configs.recommended,
   pluginReact.configs.flat.recommended,
   eslintConfigPrettier,
+  {
+    rules: {
+      'no-undef': 'off',
+    },
+  },
 ]

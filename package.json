@@ -17,6 +17,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.36.1",
     "globals": "^15.9.0",
+    "http-server": "^14.1.1",
     "prettier": "3.3.3"
   }
 }

@@ -1,0 +1,26 @@
+name: Deploy Container App
+env:
+  VERCEL_ORG_ID: ${{ secrets.MFE_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.MFE_CONTAINER_PROJ_ID }}
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/container/**'
+jobs:
+  Deploy-Production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.MFE_ACCESS_TOKEN }}
+      - name: Build Container Project Artifacts
+        env:
+          MFE_POSTS_DOMAIN: ${{ secrets.MFE_POSTS_DOMAIN }}
+          MFE_ALBUMS_DOMAIN: ${{ secrets.MFE_ALBUMS_DOMAIN }}
+        run: vercel build --prod --token=${{ secrets.MFE_ACCESS_TOKEN }}
+      - name: Deploy Container Project Artifacts to Vercel
+        run: vercel deploy --prod --token=${{ secrets.MFE_ACCESS_TOKEN }}

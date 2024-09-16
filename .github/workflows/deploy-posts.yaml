@@ -1,0 +1,23 @@
+name: Deploy Posts App
+env:
+  VERCEL_ORG_ID: ${{ secrets.MFE_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.MFE_POSTS_PROJ_ID }}
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/posts/**'
+jobs:
+  Deploy-Production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.MFE_ACCESS_TOKEN }}
+      - name: Build Posts Project Artifacts
+        run: vercel build --prod --token=${{ secrets.MFE_ACCESS_TOKEN }}
+      - name: Deploy Posts Project Artifacts to Vercel
+        run: vercel deploy --prod --token=${{ secrets.MFE_ACCESS_TOKEN }}

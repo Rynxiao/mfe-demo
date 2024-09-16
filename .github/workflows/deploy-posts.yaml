@@ -13,12 +13,22 @@ jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
+
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.MFE_ACCESS_TOKEN }}
+
       - name: Build Posts Project Artifacts
         run: vercel build --prod --token=${{ secrets.MFE_ACCESS_TOKEN }}
+
       - name: Deploy Posts Project Artifacts to Vercel
         run: vercel deploy --prebuilt --prod --token=${{ secrets.MFE_ACCESS_TOKEN }}

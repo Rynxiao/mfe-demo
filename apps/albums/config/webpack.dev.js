@@ -1,28 +1,11 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { ModuleFederationPlugin } = require('webpack').container
-const packageJson = require('../package.json')
+const { merge } = require('webpack-merge')
+const commonConfig = require('./webpack.common')
 
-module.exports = {
+module.exports = merge(commonConfig, {
   mode: 'development',
-  output: {
-    filename: '[name].[contenthash].js',
-  },
   devServer: {
     port: 8082,
     hot: true,
     historyApiFallback: true,
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'public/index.html',
-    }),
-    new ModuleFederationPlugin({
-      name: 'albums',
-      filename: 'remoteEntry.js',
-      exposes: {
-        './AlbumsIndex': './src/bootstrap',
-      },
-      shared: packageJson.dependencies,
-    }),
-  ],
-}
+})

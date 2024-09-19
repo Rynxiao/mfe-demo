@@ -1,13 +1,8 @@
-import { join } from 'lodash'
-
-const component = () => {
-  const element = document.createElement('div')
-  element.innerHTML = join(['Hello', 'Albums app'], ' 🐤 ')
-  return element
-}
+import { createApp } from 'vue'
+import App from './App.vue'
 
 export const mount = (el) => {
-  el.appendChild(component())
+  createApp(App).mount(el)
 }
 
 if (process.env.NODE_ENV === 'development') {

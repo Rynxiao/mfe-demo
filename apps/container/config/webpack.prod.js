@@ -1,16 +1,11 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { merge } = require('webpack-merge')
 const { ModuleFederationPlugin } = require('webpack').container
 const packageJson = require('../package.json')
+const commonConfig = require('./webpack.common')
 
-module.exports = {
+module.exports = merge(commonConfig, {
   mode: 'production',
-  output: {
-    filename: '[name].[contenthash].js',
-  },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: 'public/index.html',
-    }),
     new ModuleFederationPlugin({
       name: 'container',
       remotes: {
@@ -20,4 +15,4 @@ module.exports = {
       shared: packageJson.dependencies,
     }),
   ],
-}
+})

@@ -1,8 +1,8 @@
 import React from 'react'
-import * as styles from './button.module.css'
+import './button.css'
 
 const Button = () => {
-  return <button className={styles.button}>Click me!</button>
+  return <button className="button">Click me!</button>
 }
 
 export default Button

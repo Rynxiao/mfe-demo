@@ -15,7 +15,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .button {
   padding: 10px 20px;
   background-color: #42b983;

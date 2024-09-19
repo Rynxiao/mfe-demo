@@ -1,4 +1,4 @@
-.posts__button {
+.button {
   padding: 10px 20px;
   background-color: #424eb9;
   color: white;
@@ -7,6 +7,6 @@
   cursor: pointer;
 }
 
-.posts__button:hover {
+.button:hover {
   background-color: #983669;
 }

@@ -1,5 +1,5 @@
 <template>
-  <button class="albums__button" @click="handleClick">
+  <button class="button" @click="handleClick">
     <slot></slot>
   </button>
 </template>
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style>
-.albums__button {
+.button {
   padding: 10px 20px;
   background-color: #42b983;
   color: white;
@@ -25,7 +25,7 @@ export default {
   cursor: pointer;
 }
 
-.albums__button:hover {
+.button:hover {
   background-color: #369870;
 }
 </style>

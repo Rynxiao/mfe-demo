@@ -1,28 +1,19 @@
 <template>
-  <div id="app">
-    <h1>Hello Vue with Webpack!</h1>
-    <Button @click="handleClick">Albums: Click me</Button>
+  <div class="w-full h-full flex flex-col">
+    <h1 class="text-2xl font-bold tracking-tight">All Albums</h1>
+    <ScrollArea class="w-full flex-1 rounded-md mt-8">
+      <ListItem />
+      <ListItem />
+    </ScrollArea>
   </div>
 </template>
 
 <script>
-import Button from './components/ui/button/Button.vue'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import ListItem from '@/components/ListItem'
 
 export default {
   name: 'App',
-  methods: {
-    handleClick() {
-      alert('Button clicked!')
-    },
-  },
-  components: {
-    Button,
-  },
+  components: { ScrollArea, ListItem },
 }
 </script>
-
-<style scoped>
-h1 {
-  color: #42b983;
-}
-</style>

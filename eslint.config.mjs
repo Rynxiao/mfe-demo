@@ -12,6 +12,8 @@ export default [
   {
     rules: {
       'no-undef': 'off',
+      'react/prop-types': 'off',
+      'react/no-unknown-property': 'off',
     },
   },
 ]

@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import './main.css'
 
 export const mount = (el) => {
   createApp(App).mount(el)

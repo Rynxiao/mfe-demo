@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { ModuleFederationPlugin } = require('webpack').container
+const path = require('path')
 const packageJson = require('../package.json')
 
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -20,9 +21,16 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        include: path.resolve(__dirname, '../src'),
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    alias: {
+      '@': path.resolve(__dirname, '../src/'),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({

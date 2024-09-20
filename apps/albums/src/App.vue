@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <h1>Hello Vue with Webpack!</h1>
-    <Button @click="handleClick">Click me!</Button>
+    <Button @click="handleClick">Albums: Click me</Button>
   </div>
 </template>
 
 <script>
-import Button from './components/Button.vue'
+import Button from './components/ui/button/Button.vue'
 
 export default {
   name: 'App',

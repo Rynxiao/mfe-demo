@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { ModuleFederationPlugin } = require('webpack').container
 const { VueLoaderPlugin } = require('vue-loader')
 const packageJson = require('../package.json')
+const path = require('path')
 
 module.exports = {
   output: {
@@ -15,7 +16,8 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['vue-style-loader', 'css-loader'],
+        include: path.resolve(__dirname, '../src'),
+        use: ['vue-style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
   },
@@ -37,6 +39,7 @@ module.exports = {
     extensions: ['.js', '.vue'],
     alias: {
       vue$: 'vue/dist/vue.esm-bundler.js',
+      '@': path.resolve(__dirname, '../src/'),
     },
   },
 }

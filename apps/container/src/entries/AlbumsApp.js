@@ -10,7 +10,7 @@ const AlbumsApp = () => {
     }
   }, [])
 
-  return <div ref={albumsRef} />
+  return <div className="w-full h-full" ref={albumsRef} />
 }
 
 export default AlbumsApp

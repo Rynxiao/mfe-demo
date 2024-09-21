@@ -1,5 +1,5 @@
 import React from 'react'
-import { Home, Package2, ShoppingCart } from 'lucide-react'
+import { Album, Book, Package2 } from 'lucide-react'
 
 const Link = ({ href, className, children }) => (
   <a href={href} className={className}>
@@ -23,14 +23,14 @@ const NavBar = () => {
               href="#"
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
             >
-              <Home className="h-4 w-4" />
+              <Book className="h-4 w-4" />
               Posts
             </Link>
             <Link
               href="#"
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
             >
-              <ShoppingCart className="h-4 w-4" />
+              <Album className="h-4 w-4" />
               Albums
             </Link>
           </nav>

@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { DefinePlugin } = require('webpack')
 const { ModuleFederationPlugin } = require('webpack').container
 const { VueLoaderPlugin } = require('vue-loader')
 const packageJson = require('../package.json')
@@ -16,8 +17,14 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: path.resolve(__dirname, '../src'),
         use: ['vue-style-loader', 'css-loader', 'postcss-loader'],
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
       },
     ],
   },
@@ -33,6 +40,11 @@ module.exports = {
         './AlbumsIndex': './src/bootstrap',
       },
       shared: packageJson.dependencies,
+    }),
+    new DefinePlugin({
+      __VUE_OPTIONS_API__: JSON.stringify(false),
+      __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(false),
     }),
   ],
   resolve: {

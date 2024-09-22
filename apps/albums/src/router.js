@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home'
 import Photos from '@/views/Photos'
+import NotFound from '@/views/NotFound.vue'
 
 const routes = [
   { name: 'home', path: '/albums', component: Home },
@@ -10,6 +11,7 @@ const routes = [
     component: Photos,
     props: (route) => ({ query: route.query.ids }),
   },
+  { name: 'not-found', path: '/:catchAll(.*)', component: NotFound },
 ]
 
 const router = createRouter({

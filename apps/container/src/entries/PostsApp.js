@@ -10,7 +10,7 @@ const PostsApp = () => {
     }
   }, [])
 
-  return <div ref={postsRef} />
+  return <div className="w-full h-full" ref={postsRef} />
 }
 
 export default PostsApp

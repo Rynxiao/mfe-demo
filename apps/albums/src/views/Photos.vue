@@ -3,7 +3,11 @@
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbPage>Albums</BreadcrumbPage>
+          <BreadcrumbPage>
+            <BreadcrumbLink>
+              <RouterLink to="/albums">All Albums</RouterLink>
+            </BreadcrumbLink>
+          </BreadcrumbPage>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
@@ -13,11 +17,8 @@
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
               <DropdownMenuItem v-for="id in albumIds" :key="id">
-                <BreadcrumbLink
-                  class="inline-block w-full"
-                  :href="`/albums/${id}/photos?ids=${albumIds.join(',')}`"
-                >
-                  {{ id }}
+                <BreadcrumbLink class="inline-block w-full" as-child>
+                  <Button class="p-0" variant="link" @click="onSelectAlbums(id)">{{ id }}</Button>
                 </BreadcrumbLink>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -58,6 +59,7 @@ import {
   BreadcrumbSeparator,
   BreadcrumbPage,
 } from '@/components/ui/breadcrumb'
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -69,7 +71,7 @@ import AlbumArtwork from '@/components/AlbumArtwork.vue'
 import { onMounted, ref } from 'vue'
 import { faker } from '@faker-js/faker'
 import { map } from 'lodash'
-import { useRoute } from 'vue-router'
+import { useRoute, RouterLink } from 'vue-router'
 const route = useRoute()
 
 const albumId = ref('')
@@ -77,10 +79,7 @@ const albumIds = ref([])
 const photos = ref([])
 const loading = ref(true)
 
-onMounted(async () => {
-  albumId.value = route.params.id
-  albumIds.value = route.query.ids.split(',')
-
+const onFetchPhotos = async () => {
   try {
     const response = await fetch(
       `https://jsonplaceholder.typicode.com/albums/${albumId.value}/photos`,
@@ -98,5 +97,16 @@ onMounted(async () => {
   } finally {
     loading.value = false
   }
+}
+
+onMounted(async () => {
+  albumId.value = route.params.id
+  albumIds.value = route.query.ids.split(',')
+  await onFetchPhotos()
 })
+
+const onSelectAlbums = async (id) => {
+  albumId.value = id
+  await onFetchPhotos()
+}
 </script>

@@ -5,6 +5,9 @@ const commonConfig = require('./webpack.common')
 
 module.exports = merge(commonConfig, {
   mode: 'development',
+  output: {
+    publicPath: 'http://localhost:8080/',
+  },
   devServer: {
     port: 8080,
     hot: true,

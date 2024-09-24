@@ -3,7 +3,6 @@ import { useRouteError } from 'react-router-dom'
 
 const ErrorPage = () => {
   const error = useRouteError()
-  console.error(error)
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">

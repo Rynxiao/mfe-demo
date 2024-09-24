@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter } from 'vue-router'
 import Home from '@/views/Home'
 import Photos from '@/views/Photos'
 import NotFound from '@/views/NotFound.vue'
@@ -14,9 +14,11 @@ const routes = [
   { name: 'not-found', path: '/:catchAll(.*)', component: NotFound },
 ]
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-})
+const createRouterWithHistory = (history) => {
+  return createRouter({
+    history,
+    routes,
+  })
+}
 
-export default router
+export default createRouterWithHistory

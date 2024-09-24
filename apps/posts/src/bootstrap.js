@@ -2,11 +2,11 @@ import './main.css'
 
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import AppRouter from '@/router'
+import App from '@/App'
 
 export const mount = (el) => {
   const root = createRoot(el)
-  root.render(<AppRouter />)
+  root.render(<App />)
 }
 
 if (process.env.NODE_ENV === 'development') {

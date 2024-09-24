@@ -36,6 +36,7 @@ jobs:
         env:
           MFE_POSTS_DOMAIN: ${{ secrets.MFE_POSTS_DOMAIN }}
           MFE_ALBUMS_DOMAIN: ${{ secrets.MFE_ALBUMS_DOMAIN }}
+          MFE_CONTAINER_DOMAIN: ${{ secrets.MFE_CONTAINER_DOMAIN }}
         run: vercel build --prod --token=${{ secrets.MFE_ACCESS_TOKEN }}
 
       - name: Deploy Container Project Artifacts to Vercel

@@ -5,6 +5,9 @@ const commonConfig = require('./webpack.common')
 
 module.exports = merge(commonConfig, {
   mode: 'production',
+  output: {
+    publicPath: process.env.MFE_CONTAINER_DOMAIN,
+  },
   plugins: [
     new ModuleFederationPlugin({
       name: 'container',

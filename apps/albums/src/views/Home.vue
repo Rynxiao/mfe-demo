@@ -43,27 +43,31 @@ const albumsIds = computed(() => map(albums.value, 'id'))
 const loading = ref(true)
 const router = useRouter()
 
-watch(currentUser, async (user) => {
-  if (!user) {
-    return
-  }
-
-  try {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/albums?userId=${user.id}`)
-    if (response.ok) {
-      const albumsData = await response.json()
-      albums.value = map(albumsData, (album) => ({
-        ...album,
-        description: faker.lorem.lines(1),
-        image: `https://picsum.photos/250/330?random=${album.id}`,
-      }))
+watch(
+  currentUser,
+  async (user) => {
+    if (!user) {
+      return
     }
-  } catch (error) {
-    console.error(error)
-  } finally {
-    loading.value = false
-  }
-})
+
+    try {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/albums?userId=${user.id}`)
+      if (response.ok) {
+        const albumsData = await response.json()
+        albums.value = map(albumsData, (album) => ({
+          ...album,
+          description: faker.lorem.lines(1),
+          image: `https://picsum.photos/250/330?random=${album.id}`,
+        }))
+      }
+    } catch (error) {
+      console.error(error)
+    } finally {
+      loading.value = false
+    }
+  },
+  { immediate: true },
+)
 
 const gotoPhotos = (id) => {
   router.push({ name: 'photos', params: { id }, query: { ids: join(albumsIds.value, ',') } })

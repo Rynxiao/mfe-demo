@@ -44,4 +44,5 @@ http://localhost:8082
 
 ```bash
 npm run deploy:local
+http://localhost:4200
 ```

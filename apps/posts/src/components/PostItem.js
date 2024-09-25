@@ -8,7 +8,7 @@ import CommentItem from '@/components/CommentItem'
 import { map, noop } from 'lodash'
 import { Image } from '@chakra-ui/image'
 
-const PostItem = ({ id, title, body, userId }) => {
+const PostItem = ({ id, title, body, user }) => {
   const [isOpen, setIsOpen] = React.useState(false)
   const [comments, setComments] = useState()
 
@@ -38,7 +38,7 @@ const PostItem = ({ id, title, body, userId }) => {
             <h3 className="text-xl font-semibold leading-none tracking-tight">{title}</h3>
             <CardDescription className="mt-2 text-sm text-muted-foreground">{body}</CardDescription>
             <div className="flex h-5 items-center space-x-4 text-sm mt-2">
-              <p className="text-sm text-muted-foreground">User {userId}</p>
+              <p className="text-sm text-muted-foreground">{user.name}</p>
               <Separator orientation="vertical" />
               <CollapsibleTrigger asChild>
                 <Button variant="ghost" size="sm" className="w-9 p-0">

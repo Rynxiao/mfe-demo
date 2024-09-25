@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import { CircleUser } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -10,25 +10,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { get, noop } from 'lodash'
+import { noop } from 'lodash'
+import useUserStore from '@/store/userStore'
 
 const Header = () => {
-  const [users, setUsers] = useState([])
-  const [currentUser, setCurrentUser] = useState({ name: '' })
+  const { users, currentUser, fetchUser, chooseUser } = useUserStore()
 
   useEffect(() => {
-    const getUser = async () => {
-      const usersResponse = await fetch('https://jsonplaceholder.typicode.com/users')
-      const users = await usersResponse.json()
-      setUsers(users)
-      setCurrentUser(get(users, '0'))
-    }
-
-    getUser().catch(noop)
+    fetchUser().catch(noop)
   }, [])
 
   const handleSelectUser = (user) => {
-    setCurrentUser(user)
+    chooseUser(user)
   }
 
   return (

@@ -29,19 +29,27 @@
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 import AlbumArtwork from '@/components/AlbumArtwork.vue'
-import { onMounted, ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { faker } from '@faker-js/faker'
 import { join, map } from 'lodash'
 import { useRouter } from 'vue-router'
+import useUserStore from '@/store/useUserStore'
+
+const userStore = useUserStore()
+const currentUser = computed(() => userStore.currentUser)
 
 const albums = ref([])
 const albumsIds = computed(() => map(albums.value, 'id'))
 const loading = ref(true)
 const router = useRouter()
 
-onMounted(async () => {
+watch(currentUser, async (user) => {
+  if (!user) {
+    return
+  }
+
   try {
-    const response = await fetch('https://jsonplaceholder.typicode.com/albums?userId=1')
+    const response = await fetch(`https://jsonplaceholder.typicode.com/albums?userId=${user.id}`)
     if (response.ok) {
       const albumsData = await response.json()
       albums.value = map(albumsData, (album) => ({

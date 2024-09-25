@@ -21,7 +21,7 @@ cd ../../
 # startup container app
 cd container
 npm install
-MFE_POSTS_DOMAIN=http://localhost:4201/ MFE_ALBUMS_DOMAIN=http://localhost:4202/ npm run build
+MFE_POSTS_DOMAIN=http://localhost:4201/ MFE_ALBUMS_DOMAIN=http://localhost:4202/ MFE_CONTAINER_DOMAIN=http://localhost:4200/ npm run build
 cd dist
 pm2 start http-server --name "container" -- -p 4200 -d ./
 cd ../../../
